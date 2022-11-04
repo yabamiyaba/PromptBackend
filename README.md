@@ -6,7 +6,7 @@ and need to change some files and setup
 3. stability-sdk/src/stability_sdk/__main__.py", line 177  
     process_artifacts_from_answers is not imported, so add "from stability_sdk.client import process_artifacts_from_answers"
 4. set your API keys  
-    views.py line56  
+    1. views.py line56  
     set Stability Key  
-    views.py line67  
+    2. views.py line67  
     set Imgur client id
