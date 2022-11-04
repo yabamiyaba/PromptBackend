@@ -1,5 +1,5 @@
-"stability-sdk" must be cloned by https://github.com/Stability-AI/stability-sdk
-and need to change some files and setup
+"stability-sdk" must be cloned by https://github.com/Stability-AI/stability-sdk  
+## setup
 1. setup in venv dependencices
 2. stability-sdk/src/stability_sdk/__main__.py", line 158  
     "cli_args" valiables are not difined, so cli_args => args
