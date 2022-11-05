@@ -53,7 +53,7 @@ import json
 
 def SDAPI_request(request, seed_val, guidance_scale, height, width, steps, prompt_txt):
     os.environ["STABILITY_HOST"] = 'grpc.stability.ai:443'
-    os.environ["STABILITY_KEY"] = "sk-grnCOk3zjrmcyHnk7dggwLMz8SWHZbexCzb1KcFLekfTFoLq"
+    os.environ["STABILITY_KEY"] = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 
     #Imgur APIを使うとき、レスポンスをなぜか json にできないので
     #response の text 属性を辞書として扱うことにする
@@ -64,7 +64,7 @@ def SDAPI_request(request, seed_val, guidance_scale, height, width, steps, promp
     null = None
 
     #Imgur API で使う
-    client_id = "3f34176738ba79b"
+    client_id = "00000000000000000"
 
     stability_api = client.StabilityInference(
         key=os.environ["STABILITY_KEY"],
