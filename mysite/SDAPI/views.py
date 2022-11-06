@@ -1,9 +1,12 @@
 import pwd
+from django.template import loader
 from django.shortcuts import render
 from curses.ascii import HT
+import json
 
 # Create your views here.
 from django.http import HttpResponse
+from django.http.response import JsonResponse
 
 """
 test. check if can receive seed etc. by URL.
@@ -53,7 +56,7 @@ import json
 
 def SDAPI_request(request, seed_val, guidance_scale, height, width, steps, prompt_txt):
     os.environ["STABILITY_HOST"] = 'grpc.stability.ai:443'
-    os.environ["STABILITY_KEY"] = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+    os.environ["STABILITY_KEY"] = "sk-grnCOk3zjrmcyHnk7dggwLMz8SWHZbexCzb1KcFLekfTFoLq"
 
     #Imgur APIを使うとき、レスポンスをなぜか json にできないので
     #response の text 属性を辞書として扱うことにする
@@ -64,7 +67,7 @@ def SDAPI_request(request, seed_val, guidance_scale, height, width, steps, promp
     null = None
 
     #Imgur API で使う
-    client_id = "00000000000000000"
+    client_id = "3f34176738ba79b"
 
     stability_api = client.StabilityInference(
         key=os.environ["STABILITY_KEY"],
@@ -121,6 +124,15 @@ def SDAPI_request(request, seed_val, guidance_scale, height, width, steps, promp
                     "imgname" : imgname,
                     "link" : eval(response.text.replace("\n","").replace("true","True").replace("false","False"))["data"]["link"]
                     }
-                return render(request, "SDAPI/index.html", context)
+                # context_json = json.dumps(context)
+                print(context)
+                template = loader.get_template("SDAPI/index.html")
+                return JsonResponse(context)
+                
+                
+                # return render(request,"SDAPI/index.html", context)  
+                #return render(context_json)
                 #↑の辞書の link の値がImgurのURLになってるので、
                 #それをテキストとかでHttpResponseとして return すれば良い
+                
+                #jsonにする
